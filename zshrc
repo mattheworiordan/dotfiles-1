@@ -6,8 +6,6 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git brew gem rbates)
 
 export PATH="/usr/local/bin:$PATH"
-# add home bin
-export PATH="~/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,6 +68,9 @@ source ~/.nvm/nvm.sh
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# add home bin
+export PATH="/Users/$USER/bin:$PATH"
 
 # bin stubs
 export PATH="./bin:$PATH"
