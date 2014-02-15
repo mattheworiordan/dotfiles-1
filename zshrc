@@ -1,14 +1,75 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="rbates"
+ZSH_THEME="steeef"
 DISABLE_AUTO_UPDATE="true"
-DISABLE_LS_COLORS="true"
+# DISABLE_LS_COLORS="true"
 
-plugins=(git bundler brew gem rbates)
+plugins=(git brew gem rbates)
 
 export PATH="/usr/local/bin:$PATH"
-export EDITOR='mate -w'
+# add home bin
+export PATH="~/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # for Homebrew installed rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# amazon API tools
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+export EC2_HOME=/usr/local/amazon
+export AWS_ELB_HOME=/usr/local/amazon
+export EC2_PRIVATE_KEY=~/.ssh/ec2/x509-amazon-tools-pk.pem
+export EC2_CERT=~/.ssh/ec2/x509-amazon-tools-public.pem
+export AWS_CREDENTIAL_FILE=~/.ssh/aws-credentials.txt
+export AWS_AUTO_SCALING_HOME=/usr/local/amazon
+export AWS_CLOUDWATCH_HOME=/usr/local/amazon
+export AWS_IAM_HOME=/usr/local/amazon/IAMCli
+export PATH=$PATH:$AWS_IAM_HOME/bin
+export AWS_CLOUDFORMATION_HOME=/usr/local/amazon/cloudformation
+export PATH=$PATH:$AWS_CLOUDFORMATION_HOME/cloudformation/bin
+export EC2_REGION=eu-west-1 # this is where we do most of our work, so set as our default
+export EC2_URL=https://ec2.$EC2_REGION.amazonaws.com
+
+# add Amazon API tools to path
+export PATH=$PATH:/usr/local/amazon/bin
+
+# new Amazon AWS CLI
+export AWS_CONFIG_FILE=~/.ssh/aws-config.txt
+
+# for gem opener
+export GEM_EDITOR="subl"
+
+# for VIM
+export EDITOR="subl -w"
+
+# add path for Nginx
+export PATH="/usr/local/sbin:$PATH"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+## ECONSULTANCY
+## CAMPFIRE Notifications for Econsultancy
+export CAMPFIRE_TOKEN="`cat ~/.econ-ec2/campfire_token.txt`"
+## Shortcut for connecting to MySQL production
+alias econ-mysql='~/.econ-ec2/mysql-production.sh'
+## Connect to a production server
+alias econ-console="econ-env && ~/code/econsultancy/governor/bin/sshto production death_star worker1 'source /etc/profile && cd death_star/current && bundle exec rails console'"
+## short cut to set up Econ env vars so that AWS credentials match
+alias econ-env='source ~/.econ-ec2/env.sh'
+
+# aliases
+alias ssh-new='ssh -S none'
+
+# RVM
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# NVM
+source ~/.nvm/nvm.sh
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# bin stubs
+export PATH="./bin:$PATH"
