@@ -33,6 +33,7 @@ export PATH=$PATH:/usr/local/amazon/bin
 
 # new Amazon AWS CLI
 export AWS_CONFIG_FILE=~/.ssh/aws-config.txt
+export PATH="/usr/local/share/python:$PATH"
 
 # for gem opener
 export GEM_EDITOR="subl"
@@ -68,6 +69,9 @@ source ~/.nvm/nvm.sh
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Boot2Docker
+export DOCKER_HOST="127.0.0.1:4243"
 
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
