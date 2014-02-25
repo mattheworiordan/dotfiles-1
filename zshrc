@@ -9,6 +9,9 @@ export PATH="/usr/local/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
+# manually load RBates plugin allowing c shortcut to code folder in case it does not load above
+source ~/.dotfiles/oh-my-zsh/custom/plugins/rbates/rbates.plugin.zsh
+
 # for Homebrew installed rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
