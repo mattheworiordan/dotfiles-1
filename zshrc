@@ -47,9 +47,6 @@ export EDITOR="subl -w"
 # add path for Nginx
 export PATH="/usr/local/sbin:$PATH"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 ## ECONSULTANCY
 ## CAMPFIRE Notifications for Econsultancy
 export CAMPFIRE_TOKEN="`cat ~/.econ-ec2/campfire_token.txt`"
@@ -63,13 +60,6 @@ alias econ-env='source ~/.econ-ec2/env.sh'
 # aliases
 alias ssh-new='ssh -S none'
 
-# RVM
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# NVM
-source ~/.nvm/nvm.sh
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -81,3 +71,10 @@ export PATH="/Users/$USER/bin:$PATH"
 
 # bin stubs
 export PATH="./bin:$PATH"
+
+# RVM
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# NVM
+source ~/.nvm/nvm.sh
