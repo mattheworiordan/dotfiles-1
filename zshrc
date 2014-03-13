@@ -57,6 +57,9 @@ alias econ-console="econ-env && ~/code/econsultancy/governor/bin/sshto productio
 ## short cut to set up Econ env vars so that AWS credentials match
 alias econ-env='source ~/.econ-ec2/env.sh'
 
+# Prevent locale issues when SSH'ing into boxes
+export LC_ALL=en_US.utf-8
+
 # aliases
 alias ssh-new='ssh -S none'
 
