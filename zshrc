@@ -67,7 +67,7 @@ alias ssh-new='ssh -S none'
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Boot2Docker
-export DOCKER_HOST="127.0.0.1:4243"
+export DOCKER_HOST="127.0.0.1:4343"
 
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
