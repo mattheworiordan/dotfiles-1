@@ -35,7 +35,8 @@ export EC2_URL=https://ec2.$EC2_REGION.amazonaws.com
 export PATH=$PATH:/usr/local/amazon/bin
 
 # new Amazon AWS CLI
-export AWS_CONFIG_FILE=~/.ssh/aws-config.txt
+export AWS_CONFIG_FILE=~/.aws/config
+export AWS_DEFAULT_PROFILE=personal
 export PATH="/usr/local/share/python:$PATH"
 
 # for gem opener
