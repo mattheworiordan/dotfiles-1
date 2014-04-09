@@ -84,6 +84,9 @@ if [ ! -f /tmp/git_aliases_configured ]; then
 fi
 alias g=git
 
+# CTags, generate CTags from Gems
+alias gem_ctags='~/.dotfiles/scripts/generate_gem_ctags'
+
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
