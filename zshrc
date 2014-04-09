@@ -70,6 +70,20 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Boot2Docker
 export DOCKER_HOST="127.0.0.1:4343"
 
+# Git shortcuts
+if [ ! -f /tmp/git_aliases_configured ]; then
+  git config --global alias.g grep
+  git config --global alias.a add
+  git config --global alias.d diff
+  git config --global alias.s status
+  git config --global alias.c commit
+  git config --global alias.l log
+  git config --global alias.b branch
+  git config --global alias.co checkout
+  echo "Git aliases configured" > /tmp/git_aliases_configured
+fi
+alias g=git
+
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
