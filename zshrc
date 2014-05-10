@@ -87,6 +87,9 @@ alias g=git
 # CTags, generate CTags from Gems
 alias gem_ctags='~/.dotfiles/scripts/generate_gem_ctags'
 
+# For Grunt & UX repo
+export CHROME_BIN="/Applications/Google Chrome (Stable).app"
+
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
