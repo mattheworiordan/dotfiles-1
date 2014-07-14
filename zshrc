@@ -12,9 +12,6 @@ source $ZSH/oh-my-zsh.sh
 # manually load RBates plugin allowing c shortcut to code folder in case it does not load above
 source ~/.dotfiles/oh-my-zsh/custom/plugins/rbates/rbates.plugin.zsh
 
-# for Homebrew installed rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # amazon API tools
 export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export EC2_HOME=/usr/local/amazon
@@ -96,9 +93,9 @@ export PATH="/Users/$USER/bin:$PATH"
 # bin stubs
 export PATH="./bin:$PATH"
 
-# RVM
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# for Homebrew installed rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="$HOME/.rbenv/bin:$PATH"
 
 # NVM
-source ~/.nvm/nvm.sh
+source $(brew --prefix nvm)/nvm.sh
