@@ -1,0 +1,1 @@
+lsof -Fp /tmp/ssh_mux_* | cut -c 2- | xargs kill -HUP
