@@ -60,12 +60,13 @@ export LC_ALL=en_US.utf-8
 
 # aliases
 alias ssh-new='ssh -S none'
+alias "ps?"="ps ax | grep "
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Boot2Docker
-export DOCKER_HOST="127.0.0.1:4343"
+export DOCKER_HOST="localhost:4243"
 
 # Git shortcuts
 if [ ! -f /tmp/git_aliases_configured ]; then
@@ -80,6 +81,9 @@ if [ ! -f /tmp/git_aliases_configured ]; then
   echo "Git aliases configured" > /tmp/git_aliases_configured
 fi
 alias g=git
+
+# GS conflicts with Ghostscript
+unalias gs
 
 # CTags, generate CTags from Gems
 alias gem_ctags='~/.dotfiles/scripts/generate_gem_ctags'
