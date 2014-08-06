@@ -60,7 +60,8 @@ export LC_ALL=en_US.utf-8
 
 # aliases
 alias ssh-new='ssh -S none'
-alias "ps?"="ps ax | grep "
+alias "ps?"="ps ax | grep -v grep | grep "
+alias "ps!"="~/bin/kill-process-grep "
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
