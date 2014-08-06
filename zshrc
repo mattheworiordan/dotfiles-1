@@ -13,7 +13,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles/oh-my-zsh/custom/plugins/rbates/rbates.plugin.zsh
 
 # amazon API tools
-export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+# export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export EC2_HOME=/usr/local/amazon
 export AWS_ELB_HOME=/usr/local/amazon
 export EC2_PRIVATE_KEY=~/.ssh/ec2/x509-amazon-tools-pk.pem
