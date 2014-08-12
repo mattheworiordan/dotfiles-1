@@ -105,3 +105,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 
 # NVM
 source $(brew --prefix nvm)/nvm.sh
+
+# Use Ctrl-F to delete the word to the right
+bindkey "^F"  kill-word
