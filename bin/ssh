@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+run_command = false
+possible_commands = []
+last_arg = ''
+arguments = ARGV.dup
+
+arguments.each_with_index do |arg, index|
+  if arg.match(/^\-\-$/)
+    # -- indicates to SSH that a command follows
+    if index == ARGV.length - 1
+      # there is none though
+      arguments.delete_at(index)
+      break
+    else
+      run_command = true
+      break
+    end
+  elsif arg.match(/^\-/)
+    possible_commands = []
+  else
+    possible_commands << arg unless last_arg.match(/^\-/)
+  end
+
+  last_arg = arg
+end
+
+# If more than one possible command exists such as `ssh host_command_1 command_2`
+# then we should not use tmux and instead run the command
+if possible_commands.length > 1
+  run_command = true
+end
+
+if run_command || ARGV.length == 0
+  # don't invoke tmux
+  exec "/usr/bin/ssh #{arguments.join(' ')}"
+else
+  exec "/usr/bin/ssh #{arguments.join(' ')} -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+end
