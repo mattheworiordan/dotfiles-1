@@ -1,5 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="steeef"
+ZSH_CUSTOM=~/.dotfiles/oh-my-zsh/custom
+ZSH_THEME="steeef_fork"
+
 DISABLE_AUTO_UPDATE="true"
 # DISABLE_LS_COLORS="true"
 
