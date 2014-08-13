@@ -87,6 +87,9 @@ alias g=git
 # GS conflicts with Ghostscript
 unalias gs
 
+# Use Ctrl-F to delete the word to the right
+bindkey "^F"  kill-word
+
 # CTags, generate CTags from Gems
 alias gem_ctags='generate_gem_ctags'
 
@@ -99,12 +102,13 @@ export PATH="/Users/$USER/bin:$PATH"
 # bin stubs
 export PATH="./bin:$PATH"
 
-# for Homebrew installed rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH="$HOME/.rbenv/bin:$PATH"
-
 # NVM
 source $(brew --prefix nvm)/nvm.sh
 
-# Use Ctrl-F to delete the word to the right
-bindkey "^F"  kill-word
+# RVM
+# source /Users/matthew/.rvm/scripts/rvm
+
+# RbEnv
+ export PATH="$HOME/.rbenv/bin:$PATH"
+ eval "$(rbenv init -)"
+
