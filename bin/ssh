@@ -70,8 +70,6 @@ ssh_info = ssh_args_info
 # If more than one possible command exists such as `ssh host command_2`
 # then we should not use tmux and instead run the command
 if ARGV.length == 0 || ssh_info[:includes_command]
-  puts "/usr/bin/ssh #{ARGV.join(' ')}"
-  exit 1
   # don't invoke tmux
   exec "/usr/bin/ssh #{ARGV.join(' ')}"
 else
