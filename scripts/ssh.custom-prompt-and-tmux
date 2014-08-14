@@ -50,7 +50,7 @@ function ec2_prompt_command {
   fi
 
   if [ ${exitstatus} -eq 0 ]; then
-     PS1="${prompt} \\$"
+     PS1="${prompt} \\$ "
   else
      PS1="${prompt} ${RED}\\$ ${OFF}"
   fi
