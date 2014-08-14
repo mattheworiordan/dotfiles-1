@@ -1,0 +1,63 @@
+function ec2_prompt_command {
+  exitstatus="$?"
+
+  BOLD="\[\033[1m\]"
+  RED="\[\033[1;31m\]"
+  GREEN="\[\e[32;1m\]"
+  BLUE="\[\e[34;1m\]"
+  PURPLE="\[\e[35;1m\]"
+  CYAN="\[\e[36;1m\]"
+  OFF="\[\033[m\]"
+
+  time=`date +"%H:%M"`
+
+  branch=`git symbolic-ref HEAD 2> /dev/null | cut -f3 -d/`
+  if [ ! -z ${branch} ]; then
+    if [ ${branch} == "master" ]; then
+      branch=`echo " ${CYAN}${branch}"`
+    else
+      branch=`echo " ${PURPLE}${branch}"`
+    fi
+  fi
+  changes=`git status -s 2> /dev/null | \
+           wc -l | sed -e 's/ *//'`
+  if [ ${changes} -eq 0 ]; then
+    dirty=""
+  else
+    dirty="${RED}*${OFF}"
+  fi
+
+  standard_prompt="${BLUE}\w${OFF}${PURPLE}${branch}${OFF}${dirty}"
+
+  if [ -z $EC2_INSTANCE_STATE_QUERIED ]; then
+    if curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id > /dev/null; then
+      ec2_hostname=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname`
+      if [ -z $ec2_hostname ]; then
+        $ec2_hostname=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-ipvc4`
+      fi
+      instance_id=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id`
+      availability_zone=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/placement/availability-zone`
+      security_groups=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/security-groups`
+      EC2_PROMPT_CACHE="[${BLUE}${instance_id}${OFF} - ${BLUE}${ec2_hostname}${OFF}] [${GREEN}${availability_zone}${OFF} - ${GREEN}${security_groups}${OFF}]"
+    fi
+    EC2_INSTANCE_STATE_QUERIED=true
+  fi
+
+  if [ -n $EC2_INSTANCE_STATE_QUERIED ]; then
+    prompt="${EC2_PROMPT_CACHE} ${CYAN}${time}${OFF} ~\n\u ${standard_prompt}"
+  else
+    prompt="\u@\h ${CYAN}${time}${OFF} ${standard_prompt}"
+  fi
+
+  if [ ${exitstatus} -eq 0 ]; then
+     PS1="${prompt} \\$"
+  else
+     PS1="${prompt} ${RED}\\$ ${OFF}"
+  fi
+
+  PS2="${BOLD}>${OFF} "
+}
+
+if [ -n $USE_EC2_COMMAND_PROMPT ]; then
+  PROMPT_COMMAND=ec2_prompt_command
+fi
