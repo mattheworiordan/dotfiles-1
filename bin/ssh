@@ -75,12 +75,12 @@ if ARGV.length == 0 || ssh_info[:includes_command]
 else
   bashrc_path = File.expand_path('~/.dotfiles/scripts/ssh.custom-prompt-and-tmux', __FILE__)
   unless ssh_info[:host].nil?
-    `scp #{get_scp_arguments.join(' ')} #{bashrc_path} #{ssh_info[:host]}:~/.custom-prompt-and-tmux`
+    system("scp #{get_scp_arguments.join(' ')} #{bashrc_path} #{ssh_info[:host]}:~/.custom-prompt-and-tmux > /dev/null 2>&1")
   end
   exec %{/usr/bin/ssh #{ARGV.join(' ')} -t -- "if which /bin/sh > /dev/null; then
-    if ! grep USE_EC2_COMMAND_PROMPT ~/.bashrc; then
+    if ! grep USE_EC2_COMMAND_PROMPT ~/.bashrc > /dev/null; then
       echo 'if [ -n \\$USE_EC2_COMMAND_PROMPT ]; then
-        . ~/.custom-prompt-and-tmux
+        . ~/.custom-prompt-and-tmux > /dev/null || true
       fi' >> ~/.bashrc
     fi
     if which tmux > /dev/null; then
