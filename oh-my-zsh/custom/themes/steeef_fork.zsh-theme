@@ -101,7 +101,7 @@ add-zsh-hook precmd steeef_precmd
 
 function set_exit_status_dollar {
     if [ $? -eq 0 ]; then
-        STATUS_DOLLAR="%{$green%}$%{$reset_color%}"
+        STATUS_DOLLAR="$"
     else
         STATUS_DOLLAR="%{$red%}$%{$reset_color%}"
     fi
