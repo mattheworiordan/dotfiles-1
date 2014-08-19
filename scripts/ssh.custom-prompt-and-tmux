@@ -2,12 +2,17 @@ function ec2_prompt_command {
   exitstatus="$?"
 
   BOLD="\[\033[1m\]"
-  RED="\[\033[1;31m\]"
-  GREEN="\[\e[32;1m\]"
-  BLUE="\[\e[34;1m\]"
-  PURPLE="\[\e[35;1m\]"
-  CYAN="\[\e[36;1m\]"
-  OFF="\[\033[m\]"
+  RED="\e[31m"
+  GREEN="\e[32m"
+  LIGHTGREEN="\e[92m"
+  YELLOW="\e[33m"
+  LIGHTYELLOW="\e[93m"
+  BLUE="\e[34m"
+  LIGHTBLUE="\e[94m"
+  PURPLE="\e[35m"
+  CYAN="\e[36m"
+  GRAY="\e[90m"
+  OFF="\e[39m"
 
   time=`date +"%H:%M"`
 
@@ -27,7 +32,7 @@ function ec2_prompt_command {
     dirty="${RED}*${OFF}"
   fi
 
-  standard_prompt="${BLUE}\w${OFF}${PURPLE}${branch}${OFF}${dirty}"
+  standard_prompt="${CYAN}\w${OFF}${PURPLE}${branch}${OFF}${dirty}"
 
   if [ -z $EC2_INSTANCE_STATE_QUERIED ]; then
     if curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id > /dev/null; then
@@ -38,15 +43,15 @@ function ec2_prompt_command {
       instance_id=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id`
       availability_zone=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/placement/availability-zone`
       security_groups=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/security-groups`
-      EC2_PROMPT_CACHE="[${BLUE}${instance_id}${OFF} - ${BLUE}${ec2_hostname}${OFF}] [${GREEN}${availability_zone}${OFF} - ${GREEN}${security_groups}${OFF}]"
+      EC2_PROMPT_CACHE="${GRAY}[ ${YELLOW}${instance_id}${GRAY} - ${LIGHTYELLOW}${ec2_hostname}${GRAY} ] [ ${GREEN}${availability_zone}${GRAY} - ${LIGHTGREEN}${security_groups}${GRAY} ]${OFF}"
     fi
     EC2_INSTANCE_STATE_QUERIED=true
   fi
 
   if [ -n $EC2_INSTANCE_STATE_QUERIED ]; then
-    prompt="${EC2_PROMPT_CACHE} ${CYAN}${time}${OFF} ~\n\u ${standard_prompt}"
+    prompt="${EC2_PROMPT_CACHE} ${LIGHTBLUE}${time}${OFF} ~\n\u ${standard_prompt}"
   else
-    prompt="\u@\h ${CYAN}${time}${OFF} ${standard_prompt}"
+    prompt="\u@\h ${LIGHTBLUE}${time}${OFF} ${standard_prompt}"
   fi
 
   if [ ${exitstatus} -eq 0 ]; then
