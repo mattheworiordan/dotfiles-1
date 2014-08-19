@@ -5,6 +5,8 @@
 # * tmux is used automatically if available
 # * bash prompt is customised if within EC2 and provides useful EC2 info
 
+require 'base64'
+
 def get_scp_arguments
   scp_args = []
 
@@ -67,22 +69,21 @@ end
 
 ssh_info = ssh_args_info
 
+custom_prompt = File.read(File.expand_path('~/.dotfiles/scripts/ssh.custom-prompt-and-tmux', __FILE__))
+
 # If more than one possible command exists such as `ssh host command_2`
 # then we should not use tmux and instead run the command
 if ARGV.length == 0 || ssh_info[:includes_command]
   # don't invoke tmux
   exec "/usr/bin/ssh #{ARGV.join(' ')}"
 else
-  bashrc_path = File.expand_path('~/.dotfiles/scripts/ssh.custom-prompt-and-tmux', __FILE__)
-  unless ssh_info[:host].nil?
-    system("scp #{get_scp_arguments.join(' ')} #{bashrc_path} #{ssh_info[:host]}:~/.custom-prompt-and-tmux > /dev/null 2>&1")
-  end
   exec %{/usr/bin/ssh #{ARGV.join(' ')} -t -- "if which /bin/sh > /dev/null; then
     if ! grep USE_EC2_COMMAND_PROMPT ~/.bashrc > /dev/null; then
       echo 'if [ -n \\$USE_EC2_COMMAND_PROMPT ]; then
         . ~/.custom-prompt-and-tmux > /dev/null || true
       fi' >> ~/.bashrc
     fi
+    echo '#{Base64.encode64(custom_prompt)}' | base64 --decode > ~/.custom-prompt-and-tmux
     if which tmux > /dev/null; then
       USE_EC2_COMMAND_PROMPT=true && /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'
     else
