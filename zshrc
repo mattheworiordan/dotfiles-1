@@ -92,6 +92,9 @@ unalias gs
 # Use Ctrl-F to delete the word to the right
 bindkey "^F"  kill-word
 
+# Clipper https://wincent.com/products/clipper (tmux copy & paste)
+alias clip="nc localhost 8377"
+
 # CTags, generate CTags from Gems
 alias gem_ctags='generate_gem_ctags'
 
