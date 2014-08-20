@@ -70,6 +70,7 @@ end
 ssh_info = ssh_args_info
 
 tmux_config = File.read(File.expand_path('~/.dotfiles/scripts/tmux.config', __FILE__))
+tmux_status = File.read(File.expand_path('~/.dotfiles/scripts/tmux.status', __FILE__))
 custom_prompt = File.read(File.expand_path('~/.dotfiles/scripts/ssh.custom-prompt-and-tmux', __FILE__))
 
 # If more than one possible command exists such as `ssh host command_2`
@@ -85,6 +86,9 @@ else
       fi' >> ~/.bashrc
     fi
     echo '#{Base64.encode64(custom_prompt)}' | base64 --decode > ~/.custom-prompt-and-tmux
+    echo '#{Base64.encode64(tmux_status)}' | base64 --decode > ~/.tmux_status
+    chmod +x ~/.tmux_status
+    rm /dev/shm/.tmux_status_host_info
     if which tmux > /dev/null; then
       echo '#{Base64.encode64(tmux_config)}' | base64 --decode > ~/.tmux.conf
       USE_EC2_COMMAND_PROMPT=true && /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'
