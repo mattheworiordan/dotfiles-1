@@ -33,26 +33,7 @@ function ec2_prompt_command {
   fi
 
   standard_prompt="${CYAN}\w${OFF}${PURPLE}${branch}${OFF}${dirty}"
-
-  if [ -z $EC2_INSTANCE_STATE_QUERIED ]; then
-    if curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id > /dev/null; then
-      ec2_hostname=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname`
-      if [ -z $ec2_hostname ]; then
-        $ec2_hostname=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-ipvc4`
-      fi
-      instance_id=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id`
-      availability_zone=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/placement/availability-zone`
-      security_groups=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/security-groups`
-      EC2_PROMPT_CACHE="${GRAY}[ ${YELLOW}${instance_id}${GRAY} - ${LIGHTYELLOW}${ec2_hostname}${GRAY} ] [ ${GREEN}${availability_zone}${GRAY} - ${LIGHTGREEN}${security_groups}${GRAY} ]${OFF}"
-    fi
-    EC2_INSTANCE_STATE_QUERIED=true
-  fi
-
-  if [ -n $EC2_INSTANCE_STATE_QUERIED ]; then
-    prompt="${EC2_PROMPT_CACHE} ${LIGHTBLUE}${time}${OFF} ~\n\u ${standard_prompt}"
-  else
-    prompt="\u@\h ${LIGHTBLUE}${time}${OFF} ${standard_prompt}"
-  fi
+  prompt="\u ${LIGHTBLUE}${time}${OFF} ${standard_prompt}"
 
   if [ ${exitstatus} -eq 0 ]; then
      PS1="${prompt} \\$ "
