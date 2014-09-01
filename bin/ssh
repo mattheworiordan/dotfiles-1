@@ -82,6 +82,7 @@ else
   tmux_config = File.read(File.expand_path('~/.dotfiles/scripts/tmux.config', __FILE__))
   tmux_status = File.read(File.expand_path('~/.dotfiles/scripts/tmux.status', __FILE__))
   custom_prompt = File.read(File.expand_path('~/.dotfiles/scripts/ssh.custom-prompt-and-tmux', __FILE__))
+  htop_config = File.read(File.expand_path('~/.dotfiles/scripts/htop.config', __FILE__))
 
   exec %{/usr/bin/ssh #{ARGV.join(' ')} -t -- "if which /bin/sh > /dev/null; then
     if ! grep USE_EC2_COMMAND_PROMPT ~/.bashrc > /dev/null; then
@@ -90,6 +91,8 @@ else
       fi' >> ~/.bashrc
     fi
     echo '#{Base64.encode64(custom_prompt)}' | base64 --decode > ~/.custom-prompt-and-tmux
+    mkdir -p ~/.config/htop
+    echo '#{Base64.encode64(htop_config)}' | base64 --decode > ~/.config/htop/htoprc
     echo '#{Base64.encode64(tmux_status)}' | base64 --decode > ~/.tmux_status
     chmod +x ~/.tmux_status
     rm /dev/shm/.tmux_status_host_info
