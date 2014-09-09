@@ -85,6 +85,7 @@ if [ ! -f /tmp/git_aliases_configured ]; then
   echo "Git aliases configured" > /tmp/git_aliases_configured
 fi
 alias g=git
+alias z=zeus
 
 # GS conflicts with Ghostscript
 unalias gs
