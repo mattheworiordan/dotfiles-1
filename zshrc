@@ -104,9 +104,6 @@ export CHROME_BIN="/Applications/Google Chrome (Stable).app"
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
-# bin stubs
-export PATH="./bin:$PATH"
-
 # NVM
 source $(brew --prefix nvm)/nvm.sh
 
@@ -114,6 +111,8 @@ source $(brew --prefix nvm)/nvm.sh
 # source /Users/matthew/.rvm/scripts/rvm
 
 # RbEnv
- export PATH="$HOME/.rbenv/bin:$PATH"
- eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
+# bin stubs
+export PATH="./bin:$PATH"
