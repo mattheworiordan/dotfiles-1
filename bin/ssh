@@ -81,6 +81,7 @@ if ARGV.length == 0 || ssh_info[:includes_command]
 else
   tmux_config = File.read(File.expand_path('~/.dotfiles/scripts/tmux.config', __FILE__))
   tmux_status = File.read(File.expand_path('~/.dotfiles/scripts/tmux.status', __FILE__))
+  vimrc = File.read(File.expand_path('~/.dotfiles/scripts/vimrc', __FILE__))
   custom_prompt = File.read(File.expand_path('~/.dotfiles/scripts/ssh.custom-prompt-and-tmux', __FILE__))
   htop_config = File.read(File.expand_path('~/.dotfiles/scripts/htop.config', __FILE__))
 
@@ -94,6 +95,7 @@ else
     mkdir -p ~/.config/htop
     echo '#{Base64.encode64(htop_config)}' | base64 --decode > ~/.config/htop/htoprc
     echo '#{Base64.encode64(tmux_status)}' | base64 --decode > ~/.tmux_status
+    echo '#{Base64.encode64(vimrc)}' | base64 --decode > ~/.vimrc
     chmod +x ~/.tmux_status
     rm /dev/shm/.tmux_status_host_info
     if which tmux > /dev/null; then

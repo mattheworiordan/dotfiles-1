@@ -1,0 +1,2 @@
+" allow use of cursor keys, I hate hjkl
+set term=builtin_ansi
