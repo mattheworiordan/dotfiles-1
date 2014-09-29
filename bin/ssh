@@ -47,7 +47,7 @@ def ssh_args_info
           run_command = true
           break
         end
-      elsif arg.match(%r{^sh|bash|/bin/bash})
+      elsif arg.match(%r{^sh|bash|/bin/bash|rsync})
         run_command = true
         break
       elsif arg.match(/^\-/)
