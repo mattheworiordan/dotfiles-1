@@ -115,6 +115,11 @@ deploy() {
   git push deploy HEAD:$@
 }
 
+# Go
+export GOPATH=$HOME/go
+# Bin executables for packages downloaded
+export PATH="$GOPATH/bin:$PATH"
+
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
