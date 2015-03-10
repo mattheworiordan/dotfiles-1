@@ -123,6 +123,8 @@ export PATH="$GOPATH/bin:$PATH"
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
+alias venv="source venv/bin/activate"
+
 # NVM
 source $(brew --prefix nvm)/nvm.sh
 
