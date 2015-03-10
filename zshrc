@@ -66,9 +66,6 @@ alias "ps?"="ps ax | grep -v grep | grep "
 alias "ps!"="~/bin/kill-process-grep "
 alias be='bundle exec'
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # Boot2Docker
 export DOCKER_HOST="localhost:4243"
 
@@ -126,14 +123,21 @@ export PATH="/Users/$USER/bin:$PATH"
 alias venv="source venv/bin/activate"
 
 # NVM
+export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-# RVM
-# source /Users/matthew/.rvm/scripts/rvm
-
 # RbEnv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 # bin stubs
 export PATH="./bin:$PATH"
+
+# RVM
+source ~/.rvm/scripts/rvm
