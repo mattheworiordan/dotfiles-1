@@ -110,6 +110,11 @@ ably-env() {
   cd $cur_dir
 }
 
+# Shortcut for git push deploy HEAD:production commonly used
+deploy() {
+  git push deploy HEAD:$@
+}
+
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
 
