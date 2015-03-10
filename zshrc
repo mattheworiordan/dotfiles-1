@@ -99,8 +99,16 @@ alias clip="nc localhost 8377"
 # CTags, generate CTags from Gems
 alias gem_ctags='generate_gem_ctags'
 
-# For Grunt & UX repo
-export CHROME_BIN="/Applications/Google Chrome (Stable).app"
+# Ably run realtime core & front end in background processes on primary ports
+alias run_core="~/code/Ably/realtime/core/main"
+alias run_frontend="sudo WEBSOCKET_PORT=80 WEBSOCKET_TLS_PORT=443 ~/code/Ably/realtime/frontend/main"
+
+ably-env() {
+  local cur_dir="$PWD"
+  cd ~/code/Ably/infrastructure
+  ~/code/Ably/infrastructure/bin/ably-env $@
+  cd $cur_dir
+}
 
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
