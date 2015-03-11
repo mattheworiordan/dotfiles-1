@@ -96,6 +96,20 @@ alias clip="nc localhost 8377"
 # CTags, generate CTags from Gems
 alias gem_ctags='generate_gem_ctags'
 
+# Git up
+git() {
+  if ! which git-up > /dev/null 2>&1; then
+    gem install git-up
+  fi
+
+  # workaround for https://github.com/aanand/git-up/blob/master/RVM.md
+  if [[ $@ == "up" ]]; then
+    command git-up
+  else
+    command git "$@"
+  fi
+}
+
 # Ably run realtime core & front end in background processes on primary ports
 alias run_core="~/code/Ably/realtime/core/main"
 alias run_frontend="sudo WEBSOCKET_PORT=80 WEBSOCKET_TLS_PORT=443 ~/code/Ably/realtime/frontend/main"
