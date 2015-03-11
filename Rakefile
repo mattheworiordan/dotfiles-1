@@ -34,6 +34,7 @@ task :install do
       link_file(file)
     end
   end
+  system('ln -s ~/.dotfiles/bin ~/bin')
 end
 
 def replace_file(file)
