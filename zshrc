@@ -116,6 +116,9 @@ git() {
 # Ably run realtime core & front end in background processes on primary ports
 alias run_core="~/code/Ably/realtime/core/main"
 alias run_frontend="sudo WEBSOCKET_PORT=80 WEBSOCKET_TLS_PORT=443 ~/code/Ably/realtime/frontend/main"
+test_api_key() {
+  curl -s -X POST http://$1-rest.ably.io/apps -H "Content-Type: application/json" --data '{ "keys": [{}] }' | grep -E "id|scopeId|value" | tail -3
+}
 
 ably-env() {
   local cur_dir="$PWD"
