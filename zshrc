@@ -91,6 +91,9 @@ unalias gs
 bindkey "^F"  kill-word
 
 # Clipper https://wincent.com/products/clipper (tmux copy & paste)
+if [ ! `which clipper` ]; then
+  echo "Warning: clipper is not installed.  Try brew install clipper"
+fi
 alias clip="nc localhost 8377"
 
 # CTags, generate CTags from Gems
