@@ -1,0 +1,42 @@
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+
+tmuxrc() {
+  local TMUXDIR=/tmp/tmux.mattheworiordan
+  if ! [ -d $TMUXDIR ]; then
+      rm -rf $TMUXDIR
+      mkdir -p $TMUXDIR
+  fi
+  rm -rf $TMUXDIR/.sshrc
+  rm -rf $TMUXDIR/.sshrc.d
+  cp -r $SSHHOME/.sshrc $SSHHOME/.sshrc.d $TMUXDIR
+
+  # TMUX status needs to be executable
+  chmod +x $TMUXDIR/.sshrc.d/tmux.status
+
+  # -S Share a socket in a fixed directory so that sessions for me are retained and reused
+  local TMUX_COMMAND="/usr/bin/tmux -f $SSHHOME/.sshrc.d/tmux.conf -S $TMUXDIR/tmuxserver"
+
+  echo $TMUX_COMMAND
+
+  if $TMUX_COMMAND has-session; then
+    exec $TMUX_COMMAND attach $@
+  else
+    exec $TMUX_COMMAND $@
+  fi
+}
+export SHELL=`which bash`
+
+# Use custom EC2 aware command prompt
+export USE_EC2_COMMAND_PROMPT=true
+
+# Custom command prompt needs to be added to the Bash .profile file
+# but only if the file exists so as not to effect other users
+if ! grep SSHHOME ~/.profile > /dev/null 2>&1; then cat >> ~/.profile << EOM
+# Source the custom command prompt
+if [ -e $SSHHOME/.sshrc.d/ssh.custom-prompt-and-tmux ]; then
+  . $SSHHOME/.sshrc.d/ssh.custom-prompt-and-tmux
+fi
+EOM
+fi
+
+tmuxrc

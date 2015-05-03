@@ -35,6 +35,7 @@ task :install do
     end
   end
   system('ln -s ~/.dotfiles/bin ~/bin')
+  system('ln -s ~/.dotfiles/sshrc.d ~/.sshrc.d')
 end
 
 def replace_file(file)

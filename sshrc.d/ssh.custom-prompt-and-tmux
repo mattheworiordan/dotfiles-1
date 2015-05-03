@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function ec2_prompt_command {
   exitstatus="$?"
 
@@ -45,5 +47,15 @@ function ec2_prompt_command {
 }
 
 if [ -n $USE_EC2_COMMAND_PROMPT ]; then
-  PROMPT_COMMAND=ec2_prompt_command
+  export PROMPT_COMMAND=ec2_prompt_command
 fi
+
+# Support clipper `clip` command
+alias clip="nc localhost 8377"
+
+function htop {
+  local HTOP_HOME=/tmp/tmux.mattheworiordan
+  mkdir -p $HTOP_HOME/.config/htop
+  cp $SSHHOME/.sshrc.d/htop.config $HTOP_HOME/.config/htop/htoprc
+  HOME=$HTOP_HOME /usr/local/bin/htop
+}

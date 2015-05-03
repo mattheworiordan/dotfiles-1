@@ -60,6 +60,7 @@ unlink ~/.gitignore
 unlink ~/.gemrc
 unlink ~/.gvimrc
 unlink ~/.irbrc
+unlink ~/.sshrc
 unlink ~/.vim
 unlink ~/.vimrc
 rm ~/.zshrc # careful here
