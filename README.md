@@ -55,15 +55,15 @@ There are several features enabled in Ruby's irb including history and completio
 To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
 
 ```
-unlink ~/.bin
-unlink ~/.gitignore
+unlink ~/bin
 unlink ~/.gemrc
+unlink ~/.gitignore
 unlink ~/.gvimrc
 unlink ~/.irbrc
 unlink ~/.sshrc
 unlink ~/.vim
 unlink ~/.vimrc
-rm ~/.zshrc # careful here
+unlink ~/.zshrc
 rm ~/.gitconfig
 rm -rf ~/.dotfiles
 rm -rf ~/.oh-my-zsh
