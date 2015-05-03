@@ -16,4 +16,5 @@ if [ ! -f $TMP_FILE ]; then
   fi
 fi
 
-cat $TMP_FILE
+SERVER_INFO=$(cat $TMP_FILE)
+echo "$SERVER_INFO $(rainbarf --nobattery --noremaining --nobolt --noloadavg --noswap --width=16 --bright --rgb)"

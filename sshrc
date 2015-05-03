@@ -16,7 +16,18 @@ tmuxrc() {
   # -S Share a socket in a fixed directory so that sessions for me are retained and reused
   local TMUX_COMMAND="/usr/bin/tmux -f $SSHHOME/.sshrc.d/tmux.conf -S $TMUXDIR/tmuxserver"
 
-  echo $TMUX_COMMAND
+  # CPU and Mem monitor
+  if [ ! -d "$TMUXDIR/rainbarf" ]; then
+    echo "TMUX Rainbarf is not installed, installing now..."
+    mkdir -p "$TMUXDIR/rainbarf"
+    git clone git://github.com/creaktive/rainbarf.git "$TMUXDIR/rainbarf"
+    CURRENT_DIR=$PWD
+    cd "$TMUXDIR/rainbarf"
+      perl Build.PL
+      sudo ./Build install
+    cd $CURRENT_DIR
+    echo "TMUX Rainbarf installed"
+  fi
 
   if $TMUX_COMMAND has-session; then
     exec $TMUX_COMMAND attach $@
