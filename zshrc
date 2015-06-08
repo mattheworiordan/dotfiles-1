@@ -120,6 +120,10 @@ ably-env() {
   cd $cur_dir
 }
 
+ably() {
+  ably-env $@
+}
+
 # Shortcut for git push deploy HEAD:production commonly used
 deploy() {
   git push deploy HEAD:$@
