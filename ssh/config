@@ -10,7 +10,11 @@ Host *,!github.com,bitbucket.com,heroku.com
 Host *.amazonaws.com
   User ubuntu
   StrictHostKeyChecking no
+  # Clipper
+  RemoteForward 8377 localhost:8377
 
 Host *.ably.io
   User ubuntu
   StrictHostKeyChecking no
+  # Clipper
+  RemoteForward 8377 localhost:8377
