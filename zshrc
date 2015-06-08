@@ -15,23 +15,16 @@ source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles/oh-my-zsh/custom/plugins/rbates/rbates.plugin.zsh
 
 # amazon API tools
-# export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
-export EC2_HOME=/usr/local/amazon
-export AWS_ELB_HOME=/usr/local/amazon
-export EC2_PRIVATE_KEY=~/.ssh/ec2/x509-amazon-tools-pk.pem
-export EC2_CERT=~/.ssh/ec2/x509-amazon-tools-public.pem
-export AWS_CREDENTIAL_FILE=~/.ssh/aws-credentials.txt
-export AWS_AUTO_SCALING_HOME=/usr/local/amazon
-export AWS_CLOUDWATCH_HOME=/usr/local/amazon
-export AWS_IAM_HOME=/usr/local/amazon/IAMCli
-export PATH=$PATH:$AWS_IAM_HOME/bin
-export AWS_CLOUDFORMATION_HOME=/usr/local/amazon/cloudformation
-export PATH=$PATH:$AWS_CLOUDFORMATION_HOME/cloudformation/bin
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home
+export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.4.0
+
 export EC2_REGION=eu-west-1 # this is where we do most of our work, so set as our default
 export EC2_URL=https://ec2.$EC2_REGION.amazonaws.com
 
+source ~/.ssh/aws-credentials-ably
+
 # add Amazon API tools to path
-export PATH=$PATH:/usr/local/amazon/bin
+export PATH=$PATH:$EC2_HOME/bin
 
 # new Amazon AWS CLI
 export AWS_CONFIG_FILE=~/.aws/config
