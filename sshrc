@@ -1,4 +1,6 @@
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+export VIM=$SSHHOME/.sshrc.d
+export VIMINIT=$SSHHOME/.sshrc.d
+alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'
 
 tmuxrc() {
   local TMUXDIR=/tmp/tmux.mattheworiordan
