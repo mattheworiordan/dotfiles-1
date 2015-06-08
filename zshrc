@@ -40,16 +40,6 @@ export EDITOR="subl -w"
 # add path for Nginx
 export PATH="/usr/local/sbin:$PATH"
 
-## ECONSULTANCY
-## CAMPFIRE Notifications for Econsultancy
-export CAMPFIRE_TOKEN="`cat ~/.econ-ec2/campfire_token.txt`"
-## Shortcut for connecting to MySQL production
-alias econ-mysql='~/.econ-ec2/mysql-production.sh'
-## Connect to a production server
-alias econ-console="econ-env && ~/code/econsultancy/governor/bin/sshto production death_star worker1 'source /etc/profile && cd death_star/current && bundle exec rails console'"
-## short cut to set up Econ env vars so that AWS credentials match
-alias econ-env='source ~/.econ-ec2/env.sh'
-
 # Prevent locale issues when SSH'ing into boxes
 export LC_ALL=en_US.utf-8
 
