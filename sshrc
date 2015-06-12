@@ -3,14 +3,15 @@ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'
 
 tmuxrc() {
-  local TMUXDIR=/tmp/tmux.mattheworiordan
+  local TMUXDIR=/tmp/.tmux.mattheworiordan
+  local USE_EC2_COMMAND_PROMPT=true
+
   if ! [ -d $TMUXDIR ]; then
       rm -rf $TMUXDIR
       mkdir -p $TMUXDIR
   fi
-  rm -rf $TMUXDIR/.sshrc
   rm -rf $TMUXDIR/.sshrc.d
-  cp -r $SSHHOME/.sshrc $SSHHOME/.sshrc.d $TMUXDIR
+  cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $TMUXDIR/sshrc $SSHHOME/.sshrc.d $TMUXDIR
 
   # TMUX status needs to be executable
   chmod +x $TMUXDIR/.sshrc.d/tmux.status
@@ -32,24 +33,11 @@ tmuxrc() {
   fi
 
   if $TMUX_COMMAND has-session; then
-    exec $TMUX_COMMAND attach $@
+    SSHHOME=$TMUXDIR SHELL=$SSHHOME/.sshrc.d/bash-tmux exec $TMUX_COMMAND attach $@
   else
-    exec $TMUX_COMMAND $@
+    SSHHOME=$TMUXDIR SHELL=$SSHHOME/.sshrc.d/bash-tmux exec $TMUX_COMMAND $@
   fi
 }
 export SHELL=`which bash`
-
-# Use custom EC2 aware command prompt
-export USE_EC2_COMMAND_PROMPT=true
-
-# Custom command prompt needs to be added to the Bash .profile file
-# but only if the file exists so as not to effect other users
-if ! grep SSHHOME ~/.profile > /dev/null 2>&1; then cat >> ~/.profile << EOM
-# Source the custom command prompt
-if [ -e $SSHHOME/.sshrc.d/ssh.custom-prompt-and-tmux ]; then
-  . $SSHHOME/.sshrc.d/ssh.custom-prompt-and-tmux
-fi
-EOM
-fi
 
 tmuxrc

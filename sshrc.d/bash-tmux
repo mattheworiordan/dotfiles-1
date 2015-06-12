@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+exec bash --rcfile <(echo '
+if [ -e /etc/bash.bashrc ]; then source /etc/bash.bashrc; fi
+if [ -e ~/.bashrc ]; then source ~/.bashrc; fi
+source $SSHHOME/.sshrc.d/ssh.custom-prompt-and-tmux
+export PATH=$PATH:'$SSHHOME':does-not-exist
+') "$@"
