@@ -11,7 +11,7 @@ tmuxrc() {
       mkdir -p $TMUXDIR
   fi
   rm -rf $TMUXDIR/.sshrc.d
-  cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $TMUXDIR/sshrc $SSHHOME/.sshrc.d $TMUXDIR
+  cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
 
   # TMUX status needs to be executable
   chmod +x $TMUXDIR/.sshrc.d/tmux.status
