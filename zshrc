@@ -155,3 +155,6 @@ export PATH="./bin:$PATH"
 
 # RVM
 source ~/.rvm/scripts/rvm
+
+# My secrets
+source ~/.ssh/secret-envs
