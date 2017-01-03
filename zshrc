@@ -52,6 +52,9 @@ alias be='bundle exec'
 
 # Boot2Docker
 export DOCKER_HOST="localhost:4243"
+# Allow bin files in npm packages to be run
+alias npm-exec='PATH=$(npm bin):$PATH'
+
 
 # Git shortcuts
 if [ ! -f /tmp/git_aliases_configured ]; then
