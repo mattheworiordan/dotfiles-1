@@ -128,6 +128,8 @@ deploy() {
 export GOPATH=$HOME/go
 # Bin executables for packages downloaded
 export PATH="$GOPATH/bin:$PATH"
+# Support vendoring https://blog.gopheracademy.com/advent-2015/vendor-folder/
+export GO15VENDOREXPERIMENT=1
 
 # add home bin
 export PATH="/Users/$USER/bin:$PATH"
