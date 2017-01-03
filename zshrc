@@ -50,11 +50,11 @@ alias "ps?"="ps ax | grep -v grep | grep "
 alias "ps!"="~/bin/kill-process-grep "
 alias be='bundle exec'
 
-# Boot2Docker
-export DOCKER_HOST="localhost:4243"
 # Allow bin files in npm packages to be run
 alias npm-exec='PATH=$(npm bin):$PATH'
 
+# Boot2Docker - no longer used by default
+# export DOCKER_HOST="10.124.11.2:2375"
 
 # Git shortcuts
 if [ ! -f /tmp/git_aliases_configured ]; then
