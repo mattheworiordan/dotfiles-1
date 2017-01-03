@@ -33,9 +33,10 @@ export PATH="/usr/local/share/python:$PATH"
 
 # for gem opener
 export GEM_EDITOR="subl"
+export BUNDLE_EDITOR="subl"
 
 # for VIM
-export EDITOR="subl -w"
+export EDITOR="subl -n -w"
 
 # add path for Nginx
 export PATH="/usr/local/sbin:$PATH"
