@@ -158,3 +158,7 @@ source ~/.rvm/scripts/rvm
 
 # My secrets
 source ~/.ssh/secret-envs
+
+# Automatic Node version
+source /Users/mattheworiordan/.iterm2_shell_integration.zsh
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
