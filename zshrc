@@ -18,7 +18,7 @@ source ~/.dotfiles/oh-my-zsh/custom/plugins/rbates/rbates.plugin.zsh
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home
 export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.4.0
 
-export EC2_REGION=eu-west-1 # this is where we do most of our work, so set as our default
+export EC2_REGION=eu-west-2 # this is where we do most of our work, so set as our default
 export EC2_URL=https://ec2.$EC2_REGION.amazonaws.com
 
 source ~/.ssh/aws-credentials-ably
