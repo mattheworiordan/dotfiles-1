@@ -1,6 +1,4 @@
 export VIM=$SSHHOME/.sshrc.d
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
-alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'
 
 tmuxrc() {
   local TMUXDIR=/tmp/.tmux.mattheworiordan
@@ -31,6 +29,9 @@ tmuxrc() {
     cd $CURRENT_DIR
     echo "TMUX Rainbarf installed"
   fi
+
+  # Setup .vimrc preferences
+  cp $SSHHOME/.sshrc.d/.vimrc ~/.vimrc
 
   if $TMUX_COMMAND has-session; then
     SSHHOME=$TMUXDIR SHELL=$SSHHOME/.sshrc.d/bash-tmux exec $TMUX_COMMAND attach $@
