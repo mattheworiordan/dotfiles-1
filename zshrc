@@ -111,6 +111,9 @@ test_api_key() {
   curl -s -X POST http://$1-rest.ably.io/apps -H "Content-Type: application/json" --data '{ "keys": [{}] }' | grep -E "id|scopeId|value" | tail -3
 }
 
+# Ensure realtime lgos with normal line breaks (these are not used in production to keep log lines together)
+export LOG_HANDLER=raw
+
 ably-env() {
   local cur_dir="$PWD"
   cd ~/code/Ably/infrastructure
