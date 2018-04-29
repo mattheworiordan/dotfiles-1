@@ -122,11 +122,6 @@ ably() {
   ably-env $@
 }
 
-# Shortcut for git push deploy HEAD:production commonly used
-deploy() {
-  git push deploy HEAD:$@
-}
-
 # Go
 export GOPATH=$HOME/go
 # Bin executables for packages downloaded
