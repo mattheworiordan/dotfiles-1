@@ -35,7 +35,7 @@ export PATH="/usr/local/share/python:$PATH"
 export GEM_EDITOR="subl"
 export BUNDLE_EDITOR="subl"
 
-# for VIM
+# for Bash/ZSH
 export EDITOR="subl -n -w"
 
 # add path for Nginx
@@ -100,6 +100,9 @@ git() {
   fi
 }
 
+# Use Brew's OpenSSL as it supports Elliptic Curve encryption
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
 # Ably run realtime core & front end in background processes on primary ports
 alias run_core="~/code/Ably/realtime/core/main"
 alias run_frontend="sudo WEBSOCKET_PORT=80 WEBSOCKET_TLS_PORT=443 ~/code/Ably/realtime/frontend/main"
@@ -137,8 +140,8 @@ export PATH="/Users/$USER/bin:$PATH"
 alias venv="source venv/bin/activate"
 
 # NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 # RbEnv
 # export PATH="$HOME/.rbenv/bin:$PATH"
@@ -148,7 +151,7 @@ source $(brew --prefix nvm)/nvm.sh
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+# [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 # bin stubs
 export PATH="./bin:$PATH"
@@ -163,8 +166,9 @@ source ~/.ssh/secret-envs
 source /Users/mattheworiordan/.iterm2_shell_integration.zsh
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 
-PATH="/Users/mattheworiordan/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/mattheworiordan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/mattheworiordan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/mattheworiordan/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/mattheworiordan/perl5"; export PERL_MM_OPT;
+# PERL disable for now
+# PATH="/Users/mattheworiordan/perl5/bin${PATH:+:${PATH}}"; export PATH;
+# PERL5LIB="/Users/mattheworiordan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/Users/mattheworiordan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/Users/mattheworiordan/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/Users/mattheworiordan/perl5"; export PERL_MM_OPT;
