@@ -65,6 +65,7 @@ if [ ! -f /tmp/git_aliases_configured ]; then
   git config --global alias.c commit
   git config --global alias.l log
   git config --global alias.b branch
+  git config --global alias.bd "branch --sort=-committerdate"
   git config --global alias.co checkout
   echo "Git aliases configured" > /tmp/git_aliases_configured
 fi
