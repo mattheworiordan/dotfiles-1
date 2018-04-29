@@ -9,7 +9,7 @@ if [ ! -f $TMP_FILE ]; then
       ec2_hostname=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-ipvc4`
     fi
     instance_id=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/instance-id`
-    security_groups=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/security-groups | sed -r 's/(ably-)?(vpc-)?([^-]+).*/\2\3/'`
+    security_groups=`curl -s --max-time 1 --connect-timeout 1 http://169.254.169.254/latest/meta-data/security-groups | sed -r 's/(ably-)?(vpc-)?(.+?)-(ap|ca|eu|us|sa)-.*/\2\3/'`
     echo "#[fg=black]${instance_id} #[fg=brightyellow]${ec2_hostname} #[fg=brightwhite]${security_groups}" > $TMP_FILE
   else
     echo "#[fg=back]$(hostname)" > $TMP_FILE
@@ -18,3 +18,5 @@ fi
 
 SERVER_INFO=$(cat $TMP_FILE)
 echo "$SERVER_INFO $(rainbarf --nobattery --noremaining --nobolt --noloadavg --noswap --width=16 --bright --rgb)"
+
+
