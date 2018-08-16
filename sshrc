@@ -41,4 +41,9 @@ tmuxrc() {
 }
 export SHELL=`which bash`
 
+# We mostly want to inspect logs when SSH'ing in, so let's just make that easier
+if [ -d "/var/log/ably" ]; then
+  cd /var/log/ably
+fi
+
 tmuxrc
