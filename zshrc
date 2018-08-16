@@ -3,7 +3,6 @@ ZSH_CUSTOM=~/.dotfiles/oh-my-zsh/custom
 ZSH_THEME="steeef_fork"
 
 DISABLE_AUTO_UPDATE="true"
-# DISABLE_LS_COLORS="true"
 
 plugins=(git brew gem rbates)
 
@@ -142,15 +141,8 @@ alias venv="source venv/bin/activate"
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
-# RbEnv
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-# added by travis gem
-# [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 # bin stubs
 export PATH="./bin:$PATH"
@@ -164,13 +156,6 @@ source ~/.ssh/secret-envs
 # Automatic Node version
 source /Users/mattheworiordan/.iterm2_shell_integration.zsh
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-
-# PERL disable for now
-# PATH="/Users/mattheworiordan/perl5/bin${PATH:+:${PATH}}"; export PATH;
-# PERL5LIB="/Users/mattheworiordan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-# PERL_LOCAL_LIB_ROOT="/Users/mattheworiordan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-# PERL_MB_OPT="--install_base \"/Users/mattheworiordan/perl5\""; export PERL_MB_OPT;
-# PERL_MM_OPT="INSTALL_BASE=/Users/mattheworiordan/perl5"; export PERL_MM_OPT;
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
