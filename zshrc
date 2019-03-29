@@ -100,6 +100,13 @@ alias run_frontend_basic_auth="sudo ALLOW_BASIC_AUTH_WITHOUT_TLS=true WEBSOCKET_
 # Ensure realtime logs with normal line breaks (these are not used in production to keep log lines together)
 export LOG_HANDLER=raw
 
+# Allow realtime to run whilst offline
+# See https://github.com/ably/realtime/issues/2152
+export DNS_RESOLVER=lookup
+
+# Don't send Sentry errors from local CLI (useful if developing frequently)
+export ABLY_ENV_SKIP_EXCEPTION_REPORTING=true
+
 ably-env() {
   local cur_dir="$PWD"
   cd ~/code/Ably/infrastructure
