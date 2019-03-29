@@ -1,10 +1,10 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=~/.dotfiles/oh-my-zsh/custom
-ZSH_THEME="steeef_fork"
+ZSH_THEME="matt_simplified"
 
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git brew gem rbates)
+plugins=(git brew gem)
 
 export PATH="/usr/local/bin:$PATH"
 
