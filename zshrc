@@ -10,12 +10,10 @@ export PATH="/usr/local/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# manually load RBates plugin allowing c shortcut to code folder in case it does not load above
-source ~/.dotfiles/oh-my-zsh/custom/plugins/rbates/rbates.plugin.zsh
-
-# amazon API tools
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home
-export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.4.0
+# c shortcut to code folder in case it does not load above
+c() { cd ~/code/$1; }
+_c() { _files -W ~/code -/; }
+compdef _c c
 
 export EC2_REGION=eu-west-2 # this is where we do most of our work, so set as our default
 export EC2_URL=https://ec2.$EC2_REGION.amazonaws.com
@@ -52,9 +50,6 @@ alias be='bundle exec'
 # Allow bin files in npm packages to be run
 alias npm-exec='PATH=$(npm bin):$PATH'
 
-# Boot2Docker - no longer used by default
-# export DOCKER_HOST="10.124.11.2:2375"
-
 # Git shortcuts
 if [ ! -f /tmp/git_aliases_configured ]; then
   git config --global alias.g grep
@@ -71,20 +66,14 @@ fi
 alias g=git
 alias z=zeus
 
-# GS conflicts with Ghostscript
-unalias gs
-
 # Use Ctrl-F to delete the word to the right
 bindkey "^F"  kill-word
 
 # Clipper https://wincent.com/products/clipper (tmux copy & paste)
-if [ ! `which clipper` ]; then
+if ! which clipper > /dev/null 2>&1; then
   echo "Warning: clipper is not installed.  Try brew install clipper"
 fi
 alias clip="nc localhost 8377"
-
-# CTags, generate CTags from Gems
-alias gem_ctags='generate_gem_ctags'
 
 # Git up
 git() {
@@ -107,11 +96,8 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 alias run_core="~/code/Ably/realtime/core/main"
 alias run_frontend="sudo WEBSOCKET_PORT=80 WEBSOCKET_TLS_PORT=443 ~/code/Ably/realtime/frontend/main"
 alias run_frontend_basic_auth="sudo ALLOW_BASIC_AUTH_WITHOUT_TLS=true WEBSOCKET_PORT=80 WEBSOCKET_TLS_PORT=443 ~/code/Ably/realtime/frontend/main"
-test_api_key() {
-  curl -s -X POST http://$1-rest.ably.io/apps -H "Content-Type: application/json" --data '{ "keys": [{}] }' | grep -E "id|scopeId|value" | tail -3
-}
 
-# Ensure realtime lgos with normal line breaks (these are not used in production to keep log lines together)
+# Ensure realtime logs with normal line breaks (these are not used in production to keep log lines together)
 export LOG_HANDLER=raw
 
 ably-env() {
@@ -139,7 +125,11 @@ alias venv="source venv/bin/activate"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Automatic Node version
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -149,13 +139,14 @@ export PATH="./bin:$PATH"
 
 # RVM
 source ~/.rvm/scripts/rvm
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
 # My secrets
 source ~/.ssh/secret-envs
 
-# Automatic Node version
-source /Users/mattheworiordan/.iterm2_shell_integration.zsh
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+# Support QT and Capybara-webkit https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
+# export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Iterm 2 integration
+source ~/.iterm2_shell_integration.zsh
