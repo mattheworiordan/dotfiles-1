@@ -130,24 +130,11 @@ export PATH="/Users/$USER/bin:$PATH"
 
 alias venv="source venv/bin/activate"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Automatic Node version
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # bin stubs
 export PATH="./bin:$PATH"
-
-# RVM
-source ~/.rvm/scripts/rvm
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # My secrets
 source ~/.ssh/secret-envs
@@ -157,3 +144,9 @@ source ~/.ssh/secret-envs
 
 # Iterm 2 integration
 source ~/.iterm2_shell_integration.zsh
+
+# Version managers
+
+# Install ASDF version manager (multiple languages)
+. $(brew --prefix asdf)/asdf.sh
+. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
